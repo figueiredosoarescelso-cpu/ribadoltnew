@@ -1,9 +1,7 @@
 #!/bin/bash
 set -e
-# Encontra o ficheiro principal gerado pelo build
-MAIN=$(ls dist/server/assets/server-*.js | head -1)
+MAIN=$(ls dist/server/assets/server-*.js | head -1 | sed 's|dist/server/||')
 echo "Found server entry: $MAIN"
-# Cria o wrangler.json apontando para esse ficheiro
 cat > dist/server/wrangler.json << WRANGLER
 {
   "name": "ribadoltnew",
@@ -12,5 +10,5 @@ cat > dist/server/wrangler.json << WRANGLER
   "main": "$MAIN"
 }
 WRANGLER
-echo "Created dist/server/wrangler.json"
+echo "Created dist/server/wrangler.json with main: $MAIN"
 npx wrangler deploy --config dist/server/wrangler.json
