@@ -7,8 +7,11 @@ cat > dist/server/wrangler.json << WRANGLER
   "name": "ribadoltnew",
   "compatibility_date": "2025-09-24",
   "compatibility_flags": ["nodejs_compat"],
-  "main": "$MAIN"
+  "main": "$MAIN",
+  "assets": {
+    "directory": "../client"
+  }
 }
 WRANGLER
-echo "Created dist/server/wrangler.json with main: $MAIN"
+echo "Created dist/server/wrangler.json"
 npx wrangler deploy --config dist/server/wrangler.json
