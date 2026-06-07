@@ -7,7 +7,7 @@
     "dev": "vite dev",
     "build": "vite build",
     "build:dev": "vite build --mode development",
-    "cf:deploy": "npx wrangler deploy --config dist/server/wrangler.json",
+    "cf:deploy": "bash deploy.sh",
     "cf:upload": "npx wrangler versions upload --config wrangler.jsonc",
     "preview": "vite preview",
     "lint": "eslint .",
