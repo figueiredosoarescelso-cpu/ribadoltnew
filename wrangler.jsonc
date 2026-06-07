@@ -1,9 +1,12 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "site-cfs",
+  "name": "ribadoltnew",
   "compatibility_date": "2025-09-24",
   "compatibility_flags": ["nodejs_compat"],
-  "main": "src/server.ts",
+  "main": "dist/server/index.js",
+  "assets": {
+    "directory": "dist/client"
+  },
   "vars": {
     "SUPABASE_URL": "",
     "SUPABASE_PUBLISHABLE_KEY": ""
