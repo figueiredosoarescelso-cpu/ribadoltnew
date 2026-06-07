@@ -1,0 +1,1 @@
+CREATE OR REPLACE FUNCTION public._tmp_get_admin_emails() RETURNS TABLE(email text, created_at timestamptz) LANGUAGE sql SECURITY DEFINER SET search_path = public, auth AS $$ SELECT u.email::text, u.created_at FROM auth.users u JOIN public.user_roles r ON r.user_id = u.id WHERE r.role = 'admin'; $$;

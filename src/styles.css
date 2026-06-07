@@ -1,0 +1,173 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* CFS — Construções Figueiredo e Soares
+ * Premium real estate developer.
+ * Palette: warm white, sand, soft grey, CFS green.
+ * Typography: Instrument Serif (display) + Inter (body).
+ * Google Fonts are loaded via <link> in src/routes/__root.tsx
+ */
+
+
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-surface: var(--surface);
+  --color-sand: var(--sand);
+  --color-concrete: var(--concrete);
+
+  --font-display: "Instrument Serif", ui-serif, Georgia, serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+:root {
+  --radius: 0.25rem; /* sharper, architectural */
+
+  /* Warm sand background */
+  --background: oklch(0.972 0.01 70);
+  --foreground: oklch(0.22 0.012 60);
+
+  --card: oklch(0.985 0.006 70);
+  --card-foreground: oklch(0.22 0.012 60);
+  --popover: oklch(0.985 0.006 70);
+  --popover-foreground: oklch(0.22 0.012 60);
+
+  /* CFS green */
+  --primary: oklch(0.38 0.072 142);
+  --primary-foreground: oklch(0.985 0.006 70);
+
+  --secondary: oklch(0.93 0.012 75);
+  --secondary-foreground: oklch(0.22 0.012 60);
+
+  --muted: oklch(0.93 0.012 75);
+  --muted-foreground: oklch(0.5 0.012 70);
+
+  --accent: oklch(0.38 0.072 142);
+  --accent-foreground: oklch(0.985 0.006 70);
+
+  --destructive: oklch(0.55 0.2 27);
+  --destructive-foreground: oklch(0.985 0.006 70);
+
+  --border: oklch(0.22 0.012 60 / 12%);
+  --input: oklch(0.22 0.012 60 / 14%);
+  --ring: oklch(0.38 0.072 142);
+
+  /* Custom CFS surfaces */
+  --surface: oklch(0.945 0.012 75); /* warm sand */
+  --sand: oklch(0.91 0.018 75);
+  --concrete: oklch(0.78 0.008 70);
+}
+
+.dark {
+  --background: oklch(0.16 0.012 60);
+  --foreground: oklch(0.96 0.008 70);
+  --card: oklch(0.2 0.012 60);
+  --card-foreground: oklch(0.96 0.008 70);
+  --popover: oklch(0.2 0.012 60);
+  --popover-foreground: oklch(0.96 0.008 70);
+  --primary: oklch(0.55 0.09 142);
+  --primary-foreground: oklch(0.16 0.012 60);
+  --secondary: oklch(0.26 0.012 60);
+  --secondary-foreground: oklch(0.96 0.008 70);
+  --muted: oklch(0.26 0.012 60);
+  --muted-foreground: oklch(0.7 0.01 70);
+  --accent: oklch(0.55 0.09 142);
+  --accent-foreground: oklch(0.16 0.012 60);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 14%);
+  --ring: oklch(0.55 0.09 142);
+  --surface: oklch(0.2 0.012 60);
+  --sand: oklch(0.24 0.012 60);
+  --concrete: oklch(0.3 0.01 60);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-body);
+    font-feature-settings: "ss01", "cv11";
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background-color: color-mix(in oklab, var(--primary) 20%, transparent);
+    color: var(--primary);
+  }
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@layer utilities {
+  .animate-reveal {
+    animation: reveal-up 1s var(--ease-out-expo) both;
+  }
+  .animate-fade {
+    animation: fade-in 1.2s ease-out both;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+}
